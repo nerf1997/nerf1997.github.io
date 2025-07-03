@@ -56,3 +56,30 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroSlider();
   initContactForm();
 });
+
+
+const menuButton = document.getElementById('menuButton');
+const navMenu = document.getElementById('navMenu');
+
+// Toggle del menu
+menuButton.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+  document.body.classList.toggle('no-scroll'); // Aggiunto per gestire lo scroll del body
+});
+
+// Chiude il menu cliccando su una voce
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('show');
+    document.body.classList.remove('no-scroll'); // Rimosso per gestire lo scroll del body
+  });
+});
+
+// Chiude il menu cliccando fuori
+document.addEventListener('click', (event) => {
+  // Controlla se il click non è avvenuto all'interno del menu-container E il menu è aperto
+  if (!event.target.closest('.menu-container') && navMenu.classList.contains('show')) {
+    navMenu.classList.remove('show');
+    document.body.classList.remove('no-scroll'); // Rimosso per gestire lo scroll del body
+  }
+});
