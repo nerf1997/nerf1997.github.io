@@ -45,24 +45,24 @@
       <h1>Contattaci</h1>
       <p>Hai un progetto in mente o desideri maggiori informazioni sui nostri servizi? Compila il modulo sottostante e ti risponderemo il prima possibile.</p>
       
-      <form id="contactForm" action="https://formsubmit.co/p.1997.davide@gmail.com?_captcha=false" method="POST">
-        <!--<input type="text" name="_honey" style="display:none">-->
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="9dd96a61-d1de-471d-8d0b-26ef9b92da95">
+    
+        <input type="hidden" name="botcheck" class="botcheck">
+    
         <label for="name">Nome completo:</label>
         <input type="text" id="name" name="name" required>
-
-        <label for="email">Email:</label>
+    
+        <label for="email">Indirizzo email:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="phone">Telefono (opzionale):</label>
-        <input type="tel" id="phone" name="phone">
-
-        <label for="subject">Oggetto:</label>
-        <input type="text" id="subject" name="subject">
-
+        <label for="phone">Telefono:</label>
+        <input type="text" id="phone" name="phone">
+    
         <label for="message">Messaggio:</label>
-        <textarea id="message" name="message" rows="8" required></textarea>
-
-        <button type="submit">Invia Messaggio</button>
+        <textarea id="message" name="message" rows="5" required></textarea>
+    
+        <button type="submit" class="button">Invia Messaggio</button>
         <p id="formStatus"></p>
       </form>
     </section>
@@ -71,7 +71,7 @@
         <h2>Dove trovarci</h2>
         <p>Siamo a tua disposizione per consulenze e appuntamenti.</p>
         <p><strong>F.lli Costantino Costruzioni</strong></p>
-        <p>Via Daniele Antonio 6, 88060 Catanzaro Lido CZ</p>
+        <p>Via Daniele Antonio 6, 88100 Catanzaro</p>
         <p><a href="tel:+393487161515" style="color: #016eb1;">Telefono: +39 348 716 1515</a></p>
         <p><a href="mailto:info@example.com" style="color: #016eb1;">Email: info@example.com</a></p>
         

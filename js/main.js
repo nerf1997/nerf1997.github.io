@@ -22,44 +22,46 @@ function initHeroSlider() {
 
 // Funzione per attivare il form di contatto
 function initContactForm() {
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  if (!form || !status) return;
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const data = new FormData(form);
+    if (!form) {
+        // console.error("Contact form not found.");
+        return;
+    }
 
-    // Formsubmit.co non richiede l'header 'Accept': 'application/json' per l'invio base.
-    // Tuttavia, il tuo codice attuale che lo include funziona comunque.
-    // Lo lascio così com'è, in quanto è robusto anche per altri servizi.
-    fetch(form.action, {
-      method: form.method,
-      //headers: { 'Accept': 'application/json' }, // Questo header indica che ci aspettiamo una risposta JSON. Formsubmit.co risponde HTML/testo, ma la fetch gestirà correttamente.
-      body: data
-    })
-    .then(res => {
-      // Per Formsubmit.co, una risposta 'ok' (status 200) significa successo.
-      // Non c'è un JSON specifico da parsare in caso di successo,
-      // ma il tuo codice attuale di base funziona.
-      if (res.ok) {
-        status.textContent = '✅ Grazie! Messaggio inviato.';
-        form.reset();
-      } else {
-        // Se c'è un errore (es. validazione lato Formsubmit), potremmo ricevere un HTML con il messaggio.
-        // Qui stiamo cercando un JSON. Potresti voler adattare questo per Formsubmit.co se vuoi messaggi d'errore specifici.
-        // Per ora, un errore generico è sufficiente se res.ok non è true.
-        status.textContent = '❌ Errore durante l’invio. Riprova più tardi.';
-        // Se Formsubmit.co restituisse un JSON di errore (non comune), potresti volerlo parsare:
-        // return res.json().then(data => {
-        //   status.textContent = data.error || '❌ Errore durante l’invio.';
-        // });
-      }
-    })
-    .catch(() => {
-      status.textContent = '❌ Impossibile inviare al momento. Controlla la tua connessione.';
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = 'Invio in corso...';
+        status.style.color = '#3498db'; // Colore blu per "invio in corso"
+
+        const data = new FormData(form);
+
+        try {
+            const res = await fetch(form.action, {
+                method: form.method,
+                headers: { 'Accept': 'application/json' }, // Lascia questo header, Web3Forms lo gestisce
+                body: data
+            });
+
+            const result = await res.json(); // Web3Forms restituisce un JSON
+
+            if (result.success) { // Controlla la proprietà 'success' nella risposta JSON di Web3Forms
+                status.textContent = '✅ Grazie! Messaggio inviato.';
+                status.style.color = 'green';
+                form.reset();
+            } else {
+                // Controlla il messaggio d'errore da Web3Forms, se presente
+                const errorMessage = result.message || 'Errore durante l’invio. Riprova più tardi.';
+                status.textContent = `❌ ${errorMessage}`;
+                status.style.color = 'red';
+            }
+        } catch (error) {
+            console.error('Errore durante l’invio del form:', error);
+            status.textContent = '❌ Impossibile inviare al momento. Controlla la tua connessione.';
+            status.style.color = 'red';
+        }
     });
-  });
 }
 
 // Inizializzazione al caricamento della pagina
