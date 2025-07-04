@@ -30,23 +30,34 @@ function initContactForm() {
     e.preventDefault();
     const data = new FormData(form);
 
+    // Formsubmit.co non richiede l'header 'Accept': 'application/json' per l'invio base.
+    // Tuttavia, il tuo codice attuale che lo include funziona comunque.
+    // Lo lascio così com'è, in quanto è robusto anche per altri servizi.
     fetch(form.action, {
       method: form.method,
-      headers: { 'Accept': 'application/json' },
+      //headers: { 'Accept': 'application/json' }, // Questo header indica che ci aspettiamo una risposta JSON. Formsubmit.co risponde HTML/testo, ma la fetch gestirà correttamente.
       body: data
     })
     .then(res => {
+      // Per Formsubmit.co, una risposta 'ok' (status 200) significa successo.
+      // Non c'è un JSON specifico da parsare in caso di successo,
+      // ma il tuo codice attuale di base funziona.
       if (res.ok) {
         status.textContent = '✅ Grazie! Messaggio inviato.';
         form.reset();
       } else {
-        return res.json().then(data => {
-          status.textContent = data.error || '❌ Errore durante l’invio.';
-        });
+        // Se c'è un errore (es. validazione lato Formsubmit), potremmo ricevere un HTML con il messaggio.
+        // Qui stiamo cercando un JSON. Potresti voler adattare questo per Formsubmit.co se vuoi messaggi d'errore specifici.
+        // Per ora, un errore generico è sufficiente se res.ok non è true.
+        status.textContent = '❌ Errore durante l’invio. Riprova più tardi.';
+        // Se Formsubmit.co restituisse un JSON di errore (non comune), potresti volerlo parsare:
+        // return res.json().then(data => {
+        //   status.textContent = data.error || '❌ Errore durante l’invio.';
+        // });
       }
     })
     .catch(() => {
-      status.textContent = '❌ Impossibile inviare al momento.';
+      status.textContent = '❌ Impossibile inviare al momento. Controlla la tua connessione.';
     });
   });
 }
@@ -78,8 +89,8 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 // Chiude il menu cliccando fuori
 document.addEventListener('click', (event) => {
   // Controlla se il click non è avvenuto all'interno del menu-container E il menu è aperto
-  if (!event.target.closest('.menu-container') && navMenu.classList.contains('show')) {
+  if (!navMenu.contains(event.target) && !menuButton.contains(event.target) && navMenu.classList.contains('show')) {
     navMenu.classList.remove('show');
-    document.body.classList.remove('no-scroll'); // Rimosso per gestire lo scroll del body
+    document.body.classList.remove('no-scroll');
   }
 });
