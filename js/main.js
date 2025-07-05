@@ -72,9 +72,9 @@ function loadRealizzazioniImages() {
     'realizzazione1.jpg',
     'realizzazione2.jpg',
     'realizzazione3.jpg',
-    'realizzazione4.jpg', 
+    'realizzazione4.jpg',
     'realizzazione5.jpg',
-    'realizzazione6.jpg' 
+    'realizzazione6.jpg'
   ];
 
   if (!gallery) {
@@ -117,29 +117,44 @@ function initRealizzazioniInfiniteScroll() {
       return;
   }
 
-  // Se ci sono troppe poche immagini per riempire il contenitore due volte, potrebbe non funzionare bene.
-  // Assicurati di avere un numero sufficiente di immagini.
-  
-  const scrollGallery = () => {
-    // Se la galleria ha scrollato a metà del suo contenuto (cioè, il primo set di immagini è stato superato),
-    // riporta lo scroll all'inizio del secondo set di immagini.
-    if (galleryContainer.scrollLeft >= galleryContainer.scrollWidth / 2) {
-      galleryContainer.scrollLeft -= galleryContainer.scrollWidth / 2;
+  // Aggiungi un controllo per assicurarti che il layout sia completo
+  const startScrolling = () => {
+    const totalWidth = galleryContainer.scrollWidth;
+    const clientWidth = galleryContainer.clientWidth;
+
+    console.log(`[Realizzazioni Scroll] totalWidth: ${totalWidth}, clientWidth: ${clientWidth}`); // Debugging
+    if (totalWidth <= clientWidth * 2) { // Ensure there's enough content to scroll through twice
+      console.warn('Realizzazioni Scroll: Non abbastanza contenuto per lo scroll infinito. Tentativo di ricalcolo...');
+      // Potrebbe essere necessario un piccolo ritardo per lasciare il tempo al layout
+      setTimeout(startScrolling, 100);
+      return;
     }
-    galleryContainer.scrollLeft += scrollSpeed;
+
+    const scrollGallery = () => {
+      // Se la galleria ha scrollato a metà del suo contenuto (cioè, il primo set di immagini è stato superato),
+      // riporta lo scroll all'inizio del secondo set di immagini.
+      if (galleryContainer.scrollLeft >= totalWidth / 2) {
+        galleryContainer.scrollLeft -= totalWidth / 2;
+        console.log('[Realizzazioni Scroll] Reset scrollLeft.'); // Debugging
+      }
+      galleryContainer.scrollLeft += scrollSpeed;
+      animationFrameId = requestAnimationFrame(scrollGallery);
+    };
+
+    // Avvia lo scorrimento
     animationFrameId = requestAnimationFrame(scrollGallery);
+
+    // Opzionale: Ferma lo scorrimento al passaggio del mouse e riavvialo
+    galleryContainer.addEventListener('mouseenter', () => {
+      cancelAnimationFrame(animationFrameId);
+    });
+    galleryContainer.addEventListener('mouseleave', () => {
+      animationFrameId = requestAnimationFrame(scrollGallery);
+    });
   };
 
-  // Avvia lo scorrimento
-  animationFrameId = requestAnimationFrame(scrollGallery);
-
-  // Opzionale: Ferma lo scorrimento al passaggio del mouse e riavvialo
-  galleryContainer.addEventListener('mouseenter', () => {
-    cancelAnimationFrame(animationFrameId);
-  });
-  galleryContainer.addEventListener('mouseleave', () => {
-    animationFrameId = requestAnimationFrame(scrollGallery);
-  });
+  // Avvia lo scorrimento dopo un breve ritardo per garantire il rendering
+  setTimeout(startScrolling, 500); // 500ms delay to allow images to load and layout to settle
 }
 
 
