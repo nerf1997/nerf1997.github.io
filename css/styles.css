@@ -160,11 +160,11 @@ header {
 .reali-gallery {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 .reali-gallery img {
   flex: 0 0 calc(33.333% - 10px);
-  height: 200px;
+  height: 350px;
   object-fit: cover;
   border-radius: 4px;
 }
