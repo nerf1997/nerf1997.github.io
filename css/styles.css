@@ -163,6 +163,7 @@ header {
   overflow-x: auto;
 }
 .reali-gallery img {
+  flex-shrink: 0;
   flex: 0 0 calc(33.333% - 10px);
   height: 350px;
   object-fit: cover;
@@ -177,6 +178,7 @@ header {
 }
 
 .reali-item {
+  flex-shrink: 0;
   border: 1px solid #eee;
   border-radius: 8px;
   overflow: hidden; /* Assicura che le immagini angolate non fuoriescano */
@@ -410,6 +412,7 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
 
   /* Galleria realizzazioni */
   .reali-gallery img {
+    flex: 0 0 calc(50% - 10px);
     width: 100%;
     height: auto;
   }
