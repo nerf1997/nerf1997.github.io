@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512‑…" crossorigin="anonymous" referrerpolicy="no‑referrer" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="css/swiper-custom.css" />
 </head>
 <body>
   <header>
@@ -79,8 +81,10 @@
 
     <section class="reali-preview">
       <h2>Le nostre realizzazioni</h2>
-      <div class="reali-gallery" id="realizzazioniGallery">
-        </div>
+      <div class="swiper-container" id="realizzazioniSwiper">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+      </div>
       <div class="center">
         <a href="realizzazioni.html" class="btn-outline">Vedi tutte</a>
       </div>
@@ -111,7 +115,8 @@
     </div>
     <p>© 2025 F.lli Costantino Costruzioni</p>
   </footer>
-
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="js/swiper-init.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
