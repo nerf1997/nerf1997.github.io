@@ -304,6 +304,28 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
     padding: 0 20px; /* Mantiene il padding ridotto anche su mobile */
   }
 
+  .image-text-block {
+    flex-direction: column; /* Su mobile, impila gli elementi verticalmente */
+    gap: 20px; /* Riduci lo spazio tra immagine e testo su mobile */
+    margin-top: 30px; /* Riduci il margine su mobile */
+    margin-bottom: 30px; /* Riduci il margine su mobile */
+  }
+
+  .image-text-block .text-content,
+  .image-text-block .image-content {
+    min-width: unset; /* Rimuovi la larghezza minima su mobile */
+    width: 100%; /* Occupano tutta la larghezza disponibile */
+  }
+
+  .image-text-block .image-content img {
+    height: 250px; /* Riduci l'altezza delle immagini su mobile */
+  }
+
+  /* Per la classe .reverse-on-mobile, su mobile l'ordine deve tornare normale (immagine sopra testo) */
+  .image-text-block.reverse-on-mobile {
+    flex-direction: column; /* Su mobile, sempre impila in modo normale (immagine sopra testo se l'immagine è prima nell'HTML) */
+  }
+
   /* Nasconde la navigazione desktop su mobile */
   .nav-desktop {
     display: none;
@@ -396,4 +418,56 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
   body.no-scroll {
     overflow: hidden;
   }
+
+    .footer-grid {
+    /* Il display flex sul footer-grid è già presente nell'HTML e CSS mobile
+       ma dobbiamo centrare il contenuto per la vista mobile */
+    flex-direction: column; /* Impila gli elementi verticalmente */
+    align-items: center;   /* Centra gli elementi orizzontalmente */
+  }
+
+  .social-icons {
+    /* Assicurati che le icone stesse siano centrate all'interno del loro contenitore */
+    justify-content: center; /* Centra orizzontalmente le icone all'interno di .social-icons */
+    width: 100%; /* Occupa tutta la larghezza disponibile per aiutare il centraggio */
+    margin-top: 15px; /* Aggiungi un po' di spazio sopra, se necessario */
+    margin-bottom: 15px; /* Aggiungi un po' di spazio sotto, se necessario */
+  }
+}
+
+/* Stili per i blocchi immagine-testo */
+.image-text-block {
+  display: flex; /* Utilizza Flexbox per allineare gli elementi */
+  align-items: center; /* Allinea verticalmente gli elementi al centro */
+  gap: 40px; /* Spazio tra immagine e testo */
+  margin-top: 50px; /* Spazio sopra il blocco */
+  margin-bottom: 50px; /* Spazio sotto il blocco */
+  flex-wrap: wrap; /* Permette agli elementi di andare a capo su schermi piccoli */
+}
+
+.image-text-block .text-content {
+  flex: 1; /* Il testo occuperà lo spazio disponibile */
+  min-width: 300px; /* Larghezza minima per il blocco di testo prima che vada a capo */
+  font-size: 1.1em;
+  line-height: 1.7;
+}
+
+.image-text-block .image-content {
+  flex: 1; /* L'immagine occuperà lo spazio disponibile */
+  min-width: 300px; /* Larghezza minima per il blocco immagine prima che vada a capo */
+  border-radius: 10px; /* Bordi arrotondati per l'immagine */
+  overflow: hidden; /* Assicura che l'immagine si adatti ai bordi arrotondati */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Ombra per profondità */
+}
+
+.image-text-block .image-content img {
+  width: 100%; /* L'immagine occupa il 100% della larghezza del suo contenitore */
+  height: 350px; /* Altezza fissa per le immagini */
+  object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
+  display: block; /* Rimuove lo spazio extra sotto l'immagine */
+}
+
+/* Stile per invertire l'ordine degli elementi (immagine a sinistra, testo a destra) */
+.image-text-block.reverse-on-mobile {
+  flex-direction: row-reverse; /* Inverte l'ordine degli elementi */
 }
