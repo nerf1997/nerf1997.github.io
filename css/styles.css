@@ -412,7 +412,7 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
 
   /* Galleria realizzazioni */
   .reali-gallery img {
-    flex: 0 0 calc(50% - 10px);
+    /*flex: 0 0 calc(50% - 10px);*/
     width: 100%;
     height: auto;
   }
