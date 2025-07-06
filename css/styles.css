@@ -474,3 +474,32 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
 .image-text-block.reverse-on-mobile {
   flex-direction: row-reverse; /* Inverte l'ordine degli elementi */
 }
+
+main .container ul {
+    padding-left: 40px; /* Aumenta questo valore per maggiore indentazione */
+}
+
+/* Se vuoi che anche le liste nidificate (ul dentro ul) abbiano ulteriore indentazione */
+main .container ul ul {
+    padding-left: 40px; /* Aggiunge un'ulteriore indentazione per le sottoliste */
+}
+
+/* Potresti voler azzerare il margin-left di default se presente */
+main .container ul {
+    margin-left: 0;
+}
+
+/* Stili per le informazioni legali nel footer */
+.info-legali-footer {
+    font-size: 0.85em; /* Rende il testo leggermente più piccolo del testo circostante */
+    color: #888; /* Un grigio medio. Puoi usare altri valori come #666 o #AAAAAA */
+    display: block; /* Assicura che vada a capo se necessario, anche se è già sotto un <br> */
+    margin-top: 5px; /* Aggiunge un piccolo spazio sopra per separarlo dal copyright */
+}
+
+/* Se vuoi che anche il link della privacy policy sia leggermente più piccolo, ma mantenga il suo colore specifico,
+   puoi applicare la dimensione del font al paragrafo generale, ma in questo caso lo stile inherit sul link
+   sovrascriverebbe, quindi la soluzione precedente (separare con span) è più pulita.
+   Questo per dire che il font-size del link lo lasci come è, perché è dentro un altro p.
+   L'effetto che vuoi è solo per la riga della P.IVA.
+*/
