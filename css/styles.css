@@ -426,6 +426,15 @@ main .container ul {
   transform: translateY(-2px); /* Leggero sollevamento per dare enfasi */
 }
 
+@media (max-width: 480px) {
+  .modal-gallery {
+  }
+  .gallery-nav button {
+    padding: 6px 10px;
+    font-size: 1em;
+  }
+}
+
 /* Media query per schermi più piccoli (opzionale, se i bottoni sono troppo grandi) */
 @media (max-width: 600px) {
   .btn-filter {
@@ -441,7 +450,35 @@ main .container ul {
 
 /* Media Queries per la Responsività */
 @media (max-width: 768px) {
+  .modal-content {
+    padding: 20px;
+    width: 100%;
+    margin: 10px; /* Riduci il margine sui bordi */
+  }
 
+  #modalTitle {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+  }
+
+  .modal-gallery {
+    height: 300px; /* Riduci l'altezza della galleria su mobile */
+  }
+
+  .gallery-nav button {
+    padding: 8px 12px;
+    font-size: 1.2em;
+  }
+
+  #modalDescription {
+    font-size: 1em;
+  }
+
+  .close-button {
+    font-size: 30px;
+    top: 5px;
+    right: 15px;
+  }
   .swiper-pagination {
     bottom: 0px !important; /* Aumenta il valore per spostarlo più in alto. Regola il valore se necessario. */
   }
@@ -596,4 +633,133 @@ main .container ul {
 .about-us-content p {
   font-size: 1.1em;
   line-height: 1.7;
+}
+
+/* Stili per il Modale */
+.modal {
+  display: none; /* Nascosto per default */
+  position: fixed; /* Si posiziona sopra tutto */
+  z-index: 1000; /* Assicura che sia sopra ogni altro elemento */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Abilita lo scroll se il contenuto è troppo grande */
+  background-color: rgba(0,0,0,0.8); /* Sfondo semi-trasparente */
+  justify-content: center; /* Centra orizzontalmente il contenuto */
+  align-items: center; /* Centra verticalmente il contenuto */
+  padding: 20px; /* Padding intorno al modale */
+  box-sizing: border-box; /* Include padding nel calcolo della larghezza/altezza */
+}
+
+.modal.show-modal {
+  display: flex; /* Usa flexbox per centrare il contenuto */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto; /* Centra il blocco */
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 900px; /* Larghezza massima del contenuto del modale */
+  width: 95%; /* Larghezza responsiva */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative; /* Per posizionare il bottone di chiusura */
+  animation: fadeIn 0.3s ease-out; /* Animazione di apparizione */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modalTitle {
+  color: #016eb1;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Centra gli elementi all'interno del body */
+}
+
+.modal-gallery {
+  position: relative;
+  width: 100%;
+  max-width: 700px; /* Larghezza massima della galleria */
+  /* height: 450px; Rimuovi questa linea */
+  padding-top: 56.25%; /* Rapporto d'aspetto 16:9 (Altezza / Larghezza * 100). Regola se le tue immagini hanno un rapporto diverso (es. 75% per 4:3) */
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.modal-gallery img {
+  position: absolute; /* NUOVO: Posiziona l'immagine rispetto al contenitore .modal-gallery */
+  top: 0;             /* NUOVO: Allinea in alto */
+  left: 0;            /* NUOVO: Allinea a sinistra */
+  width: 100%;        /* Riempie il 100% della larghezza del contenitore */
+  height: 100%;       /* Riempie il 100% dell'altezza del contenitore (ora basata sul padding-top) */
+  object-fit: cover;  /* L'immagine coprirà l'area, ritagliando se necessario, mantenendo le proporzioni. */
+  display: block;
+  transition: opacity 0.5s ease-in-out; /* Transizione per le immagini */
+  border-radius: 8px; /* Bordi arrotondati per l'immagine */
+}
+
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.gallery-nav button {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1.5em;
+  line-height: 1;
+  transition: background-color 0.3s ease;
+}
+
+.gallery-nav button:hover {
+  background-color: rgba(0,0,0,0.7);
+}
+
+#modalDescription {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #555;
+  text-align: justify;
+  max-width: 700px; /* Allinea con la larghezza della galleria */
 }

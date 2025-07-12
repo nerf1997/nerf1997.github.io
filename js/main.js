@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.reali-grid')) {
     initRealizzazioniFilter();
   }
+  initRealizzazioniModal();
 });
 
 
@@ -176,5 +177,77 @@ if (menuButton && navMenu) {
         navMenu.classList.remove('show');
         document.body.classList.remove('no-scroll');
       }
+    });
+}
+
+// Funzione per inizializzare il modale delle realizzazioni
+function initRealizzazioniModal() {
+    const realizzazioniItems = document.querySelectorAll('.reali-item');
+    const modal = document.getElementById('realizzazioniModal');
+    const closeButton = modal.querySelector('.close-button');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalDescription = document.getElementById('modalDescription');
+    const prevButton = modal.querySelector('.prev-button');
+    const nextButton = modal.querySelector('.next-button');
+
+    let currentImages = [];
+    let currentImageIndex = 0;
+
+    // Funzione per mostrare l'immagine corrente nella galleria del modale
+    function showImage(index) {
+        if (currentImages.length > 0) {
+            modalImage.src = currentImages[index];
+        } else {
+            modalImage.src = ''; // Nessuna immagine
+        }
+    }
+
+    // Apri il modale
+    realizzazioniItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const title = item.dataset.title;
+            const description = item.dataset.description;
+            const images = item.dataset.images ? item.dataset.images.split(',') : [];
+
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            currentImages = images;
+            currentImageIndex = 0; // Reset dell'indice all'apertura
+            showImage(currentImageIndex);
+
+            modal.classList.add('show-modal');
+            document.body.classList.add('no-scroll'); // Impedisce lo scroll del body
+        });
+    });
+
+    // Chiudi il modale cliccando sul bottone X
+    closeButton.addEventListener('click', () => {
+        modal.classList.remove('show-modal');
+        document.body.classList.remove('no-scroll');
+    });
+
+    // Chiudi il modale cliccando fuori dal contenuto del modale
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('show-modal');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+
+    // Navigazione Galleria: Immagine precedente
+    prevButton.addEventListener('click', () => {
+        if (currentImages.length > 1) {
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            showImage(currentImageIndex);
+        }
+    });
+
+    // Navigazione Galleria: Immagine successiva
+    nextButton.addEventListener('click', () => {
+        if (currentImages.length > 1) {
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            showImage(currentImageIndex);
+        }
     });
 }

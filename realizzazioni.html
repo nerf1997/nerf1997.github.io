@@ -52,7 +52,7 @@
   </header>
 
   <main>
-    <section class="container" style="padding-top: 40px; padding-bottom: 40px;">
+    <section class="container">
       <h1>Le Nostre Realizzazioni</h1>
       <p style="margin-bottom: 30px;">Siamo orgogliosi di presentare una selezione dei nostri progetti più significativi, testimonianza della nostra dedizione alla qualità e all'innovazione.</p>
       
@@ -63,7 +63,7 @@
       </div>
 
       <div class="reali-grid">
-        <div class="reali-item" data-type="privato">
+        <div class="reali-item" data-type="privato" data-title="Villa Residenziale Moderna" data-description="Questo progetto ha riguardato la costruzione di una villa di lusso con architettura contemporanea, dotata delle più avanzate soluzioni abitative in termini di domotica ed efficienza energetica. L'attenzione ai dettagli e la scelta di materiali di pregio hanno garantito un risultato di eccellenza, integrandosi armonmente nel paesaggio circostante." data-images="img/realizzazioni/villa/realizzazione1.jpg,img/realizzazioni/villa/realizzazione2.jpg,img/realizzazioni/villa/realizzazione3.jpg">
           <img src="img/realizzazioni/realizzazione1.jpg" alt="Villa Residenziale Moderna">
           <h3>Villa Residenziale Moderna</h3>
           <p>Costruzione di una villa di lusso con architettura contemporanea e soluzioni abitative all'avanguardia.</p>
@@ -101,6 +101,22 @@
       <p style="margin-bottom: 20px;">Contattaci per approfondire i dettagli e discutere le tue esigenze.</p>
       <a href="contatti.html" class="btn">Parla con un Esperto</a>
     </section>
+    <div id="realizzazioniModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-body">
+          <div class="modal-gallery">
+            <img id="modalImage" src="" alt="Immagine Progetto">
+            <div class="gallery-nav">
+              <button class="prev-button">&larr;</button>
+              <button class="next-button">&rarr;</button>
+            </div>
+          </div>
+          <p id="modalDescription"></p>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
