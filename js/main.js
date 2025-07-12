@@ -1,13 +1,13 @@
-// Funzione per attivare lo slider dell'eroe (immutata)
+// Funzione per attivare lo slider dell'eroe
 function initHeroSlider() {
   const slides = document.querySelectorAll('.hero img');
-  let current = 0;
 
   if (slides.length === 0) {
     console.error('⚠️ Slider: nessuna immagine trovata dentro .hero');
     return;
   }
 
+  let current = 0;
   slides.forEach((slide, index) => {
     slide.style.opacity = '0';
     if (index === current) {
@@ -22,13 +22,12 @@ function initHeroSlider() {
   }, 5000);
 }
 
-// Funzione per attivare il form di contatto (immutata)
+// Funzione per attivare il form di contatto
 function initContactForm() {
     const form = document.getElementById('contactForm');
     const status = document.getElementById('formStatus');
 
     if (!form) {
-        // console.error("Contact form not found.");
         return;
     }
 
@@ -65,129 +64,117 @@ function initContactForm() {
     });
 }
 
-// Funzione per caricare le immagini delle realizzazioni (Modificata per la duplicazione)
-function loadRealizzazioniImages() {
-  const gallery = document.getElementById('realizzazioniGallery');
-  const imageFiles = [
-    'realizzazione1.jpg',
-    'realizzazione2.jpg',
-    'realizzazione3.jpg',
-    'realizzazione4.jpg',
-    'realizzazione5.jpg',
-    'realizzazione6.jpg'
-  ];
+// Funzione: Inizializzazione del filtro delle realizzazioni
+function initRealizzazioniFilter() {
+    const filterButtons = document.querySelectorAll('.btn-filter');
+    const realizzazioniItems = document.querySelectorAll('.reali-item');
 
-  if (!gallery) {
-    console.error('⚠️ Realizzazioni: contenitore galleria non trovato.');
-    return;
-  }
-
-  gallery.innerHTML = ''; // Pulisci la galleria prima di caricarla
-
-  // Crea e aggiungi le immagini al DOM
-  const createImages = () => {
-    imageFiles.forEach(fileName => {
-      const img = document.createElement('img');
-      img.src = `img/realizzazioni/${fileName}`;
-      img.alt = `Progetto ${fileName.replace(/\.(jpeg|jpg|png|gif)$/i, '')}`;
-      img.classList.add('reali-item'); // Nuova classe per identificare gli elementi scorrevoli
-      gallery.appendChild(img);
-    });
-  };
-
-  createImages(); // Aggiunge il primo set di immagini
-  createImages(); // Aggiunge un secondo set di immagini per lo scroll infinito
-}
-
-// NUOVA FUNZIONE: Slider per le realizzazioni con scrolling infinito
-function initRealizzazioniInfiniteScroll() {
-  const galleryContainer = document.getElementById('realizzazioniGallery');
-  if (!galleryContainer) {
-    console.error('⚠️ Realizzazioni Scroll: contenitore galleria non trovato.');
-    return;
-  }
-
-  const scrollSpeed = 0.5; // Velocità di scorrimento in pixel per frame (modifica per accelerare/rallentare)
-  let animationFrameId;
-
-  // Clona gli elementi esistenti per creare un loop infinito
-  const items = galleryContainer.querySelectorAll('.reali-item');
-  if (items.length === 0) {
-      console.warn('Realizzazioni Scroll: Nessun elemento da scorrere.');
-      return;
-  }
-
-  // Aggiungi un controllo per assicurarti che il layout sia completo
-  const startScrolling = () => {
-    const totalWidth = galleryContainer.scrollWidth;
-    const clientWidth = galleryContainer.clientWidth;
-
-    console.log(`[Realizzazioni Scroll] totalWidth: ${totalWidth}, clientWidth: ${clientWidth}`); // Debugging
-    if (totalWidth <= clientWidth * 2) { // Ensure there's enough content to scroll through twice
-      console.warn('Realizzazioni Scroll: Non abbastanza contenuto per lo scroll infinito. Tentativo di ricalcolo...');
-      // Potrebbe essere necessario un piccolo ritardo per lasciare il tempo al layout
-      setTimeout(startScrolling, 100);
-      return;
+    if (filterButtons.length === 0 || realizzazioniItems.length === 0) {
+        console.warn('⚠️ Filtro Realizzazioni: Bottoni o elementi da filtrare non trovati.');
+        return;
     }
 
-    const scrollGallery = () => {
-      // Se la galleria ha scrollato a metà del suo contenuto (cioè, il primo set di immagini è stato superato),
-      // riporta lo scroll all'inizio del secondo set di immagini.
-      if (galleryContainer.scrollLeft >= totalWidth / 2) {
-        galleryContainer.scrollLeft -= totalWidth / 2;
-        console.log('[Realizzazioni Scroll] Reset scrollLeft.'); // Debugging
-      }
-      galleryContainer.scrollLeft += scrollSpeed;
-      animationFrameId = requestAnimationFrame(scrollGallery);
-    };
+    function filterRealizzazioni(filterType) {
+        realizzazioniItems.forEach(item => {
+            const itemType = item.dataset.type;
 
-    // Avvia lo scorrimento
-    animationFrameId = requestAnimationFrame(scrollGallery);
+            if (filterType === 'all' || itemType === filterType) {
+                // Se l'elemento deve essere mostrato
+                // 1. Rimuovi display: none; immediatamente per permettere le transizioni
+                item.style.display = ''; // Reimposta a valore di default (grid item)
 
-    // Opzionale: Ferma lo scorrimento al passaggio del mouse e riavvialo
-    galleryContainer.addEventListener('mouseenter', () => {
-      cancelAnimationFrame(animationFrameId);
+                // 2. Forza il reflow per garantire che le proprietà CSS siano calcolate prima della transizione
+                // Questo è un trucco per far partire la transizione quando si aggiunge la classe
+                void item.offsetWidth; // Non rimuovere questa linea!
+
+                // 3. Rimuovi la classe 'hidden' per avviare l'animazione di apparizione
+                item.classList.remove('hidden');
+
+            } else {
+                // Se l'elemento deve essere nascosto
+                // 1. Aggiungi la classe 'hidden' per avviare le transizioni CSS (opacity, max-height, transform)
+                item.classList.add('hidden');
+
+                // 2. Imposta display: none; DOPO un brevissimo ritardo.
+                // Questo permette alla transizione di iniziare (visivamente scomparendo/collassando)
+                // e poi l'elemento viene rapidamente rimosso dal flusso, consentendo alla griglia di reagire.
+                const transitionDuration = 300; // Corrisponde alla durata delle transizioni CSS
+                const displayNoneDelay = 100; // Imposta display: none; dopo 100ms (regola questo valore!)
+
+                setTimeout(() => {
+                    if (item.classList.contains('hidden')) { // Assicurati che sia ancora inteso come nascosto
+                        item.style.display = 'none'; // Nascondi completamente l'elemento
+                    }
+                }, displayNoneDelay);
+            }
+        });
+    }
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const filterType = button.dataset.filter;
+            filterRealizzazioni(filterType);
+        });
     });
-    galleryContainer.addEventListener('mouseleave', () => {
-      animationFrameId = requestAnimationFrame(scrollGallery);
-    });
-  };
 
-  // Avvia lo scorrimento dopo un breve ritardo per garantire il rendering
-  setTimeout(startScrolling, 500); // 500ms delay to allow images to load and layout to settle
+    // Imposta il bottone "Tutti" come attivo all'inizio
+    const allButton = document.querySelector('.filter-buttons .btn-filter[data-filter="all"]');
+    if (allButton) {
+        allButton.classList.add('active');
+        // Assicurati che tutti gli elementi siano visibili e nel flusso all'avvio
+        realizzazioniItems.forEach(item => {
+            item.classList.remove('hidden');
+            item.style.display = ''; // Assicurati che non siano display: none
+        });
+    }
 }
 
 
 // Inizializzazione al caricamento della pagina
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroSlider();
-  initContactForm();
-  loadRealizzazioniImages();           // Prima carica le immagini (due volte)
-  initRealizzazioniInfiniteScroll();  // Poi avvia lo scorrimento infinito
+  // Esegui initHeroSlider() solo se l'elemento .hero è presente
+  if (document.querySelector('.hero')) {
+    initHeroSlider();
+  }
+
+  // Esegui initContactForm() solo se l'elemento contactForm è presente
+  if (document.getElementById('contactForm')) {
+    initContactForm();
+  }
+
+  // ** IMPORTANTISSIMO: Queste funzioni sono state rimosse perché non sono compatibili con la griglia filtrabile o gli Swiper. **
+  // loadRealizzazioniImagesForInfiniteScroll();
+  // initRealizzazioniInfiniteScroll();
+
+  // Inizializza il filtro realizzazioni SOLO se la griglia è presente
+  if (document.querySelector('.reali-grid')) {
+    initRealizzazioniFilter();
+  }
 });
 
 
 const menuButton = document.getElementById('menuButton');
 const navMenu = document.getElementById('navMenu');
 
-// Toggle del menu (immutato)
-menuButton.addEventListener('click', () => {
-  navMenu.classList.toggle('show');
-  document.body.classList.toggle('no-scroll');
-});
+if (menuButton && navMenu) {
+    menuButton.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+      document.body.classList.toggle('no-scroll');
+    });
 
-// Chiude il menu cliccando su una voce (immutato)
-document.querySelectorAll('.nav-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('show');
-    document.body.classList.remove('no-scroll');
-  });
-});
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('show');
+        document.body.classList.remove('no-scroll');
+      });
+    });
 
-// Chiude il menu cliccando fuori (immutato)
-document.addEventListener('click', (event) => {
-  if (!navMenu.contains(event.target) && !menuButton.contains(event.target) && navMenu.classList.contains('show')) {
-    navMenu.classList.remove('show');
-    document.body.classList.remove('no-scroll');
-  }
-});
+    document.addEventListener('click', (event) => {
+      if (!navMenu.contains(event.target) && !menuButton.contains(event.target) && navMenu.classList.contains('show')) {
+        navMenu.classList.remove('show');
+        document.body.classList.remove('no-scroll');
+      }
+    });
+}

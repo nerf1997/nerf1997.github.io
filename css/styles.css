@@ -175,16 +175,24 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colonne adattive, minimo 280px */
   gap: 25px; /* Spazio tra gli elementi della griglia */
   margin-top: 30px;
+  /* NUOVA AGGIUNTA PER MIGLIORARE IL RIPOSIZIONAMENTO */
+  grid-auto-flow: dense; /* Permette alla griglia di riempire gli spazi vuoti */
 }
 
 .reali-item {
-  flex-shrink: 0;
+  /* rimosso flex-shrink e flex, la griglia gestisce il layout */
   border: 1px solid #eee;
   border-radius: 8px;
   overflow: hidden; /* Assicura che le immagini angolate non fuoriescano */
   box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Leggera ombra */
-  transition: transform 0.2s ease-in-out; /* Effetto hover */
+  transition: opacity 0.3s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out, margin 0.5s ease-out, padding 0.5s ease-out; /* Transizioni più lunghe e fluide */
   text-align: center; /* Centra il testo all'interno dell'elemento */
+  opacity: 1; /* Inizialmente visibile */
+  transform: scale(1); /* Inizialmente a dimensione normale */
+  max-height: 500px; /* Imposta un'altezza massima sufficientemente grande per tutti i tuoi elementi reali-item */
+  margin-bottom: 30px; /* Assicurati che ci sia un margine per la transizione */
+  overflow: hidden; /* Importante per tagliare il contenuto durante la transizione di max-height */
+  visibility: visible; /* Inizialmente visibile */
 }
 
 .reali-item:hover {
@@ -210,6 +218,20 @@ header {
   font-size: 0.95em;
   color: #555;
 }
+
+/* Stili per gli elementi nascosti durante il filtraggio */
+.reali-item.hidden {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  border: none; /* Rimuove il bordo quando nascosto */
+  transform: scale(0.8); /* Rimpicciolisce leggermente per un effetto più fluido */
+  pointer-events: none; /* Impedisce interazioni con gli elementi nascosti */
+  /*visibility: hidden; /* Nasconde completamente l'elemento al termine della transizione */
+  /*transition: opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out, margin 0.5s ease-out, padding 0.5s ease-out, border 0.5s ease-out, visibility 0s linear 0.5s; /* visibility ritarda l'occultamento */
+}
+
 .center {
   text-align: center;
   margin-top: 20px;
@@ -228,6 +250,16 @@ footer {
 }
 .footer-grid h4 {
   margin-bottom: 10px;
+}
+footer p {
+  margin-bottom: 8px;
+}
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
 }
 .social-icons {
   list-style: none;
@@ -296,7 +328,118 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
   color: #ffffff; /* Bianco puro */
 }
 
-/* Regolazioni Responsive per mobile */
+/* Stili per i blocchi immagine-testo */
+.image-text-block {
+  display: flex; /* Utilizza Flexbox per allineare gli elementi */
+  align-items: center; /* Allinea verticalmente gli elementi al centro */
+  gap: 40px; /* Spazio tra immagine e testo */
+  margin-top: 0px; /* Spazio sopra il blocco */
+  margin-bottom: 50px; /* Spazio sotto il blocco */
+  flex-wrap: wrap; /* Permette agli elementi di andare a capo su schermi piccoli */
+}
+
+.image-text-block .text-content {
+  flex: 1; /* Il testo occuperà lo spazio disponibile */
+  min-width: 300px; /* Larghezza minima per il blocco di testo prima che vada a capo */
+  /*font-size: 1.1em;
+  line-height: 1.7;*/
+}
+
+.image-text-block .image-content {
+  flex: 1; /* L'immagine occuperà lo spazio disponibile */
+  min-width: 300px; /* Larghezza minima per il blocco immagine prima che vada a capo */
+  border-radius: 10px; /* Bordi arrotondati per l'immagine */
+  overflow: hidden; /* Assicura che l'immagine si adatti ai bordi arrotondati */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Ombra per profondità */
+}
+
+.image-text-block .image-content img {
+  width: 100%; /* L'immagine occupa il 100% della larghezza del suo contenitore */
+  height: 350px; /* Altezza fissa per le immagini */
+  object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
+  display: block; /* Rimuove lo spazio extra sotto l'immagine */
+}
+
+/* Stile per invertire l'ordine degli elementi (immagine a sinistra, testo a destra) */
+.image-text-block.reverse-on-mobile {
+  flex-direction: row-reverse; /* Inverte l'ordine degli elementi */
+}
+
+main .container ul {
+    padding-left: 40px; /* Aumenta questo valore per maggiore indentazione */
+}
+
+/* Se vuoi che anche le liste nidificate (ul dentro ul) abbiano ulteriore indentazione */
+main .container ul ul {
+    padding-left: 40px; /* Aggiunge un'ulteriore indentazione per le sottoliste */
+}
+
+/* Potresti voler azzerare il margin-left di default se presente */
+main .container ul {
+    margin-left: 0;
+}
+
+/* Stili per le informazioni legali nel footer */
+.info-legali-footer {
+    font-size: 0.85em; /* Rende il testo leggermente più piccolo del testo circostante */
+    color: #888; /* Un grigio medio. Puoi usare altri valori come #666 o #AAAAAA */
+    display: block; /* Assicura che vada a capo se necessario, anche se è già sotto un <br> */
+    margin-top: 5px; /* Aggiunge un piccolo spazio sopra per separarlo dal copyright */
+}
+
+/* Stili per i bottoni di filtro (moderno) */
+.filter-buttons {
+  display: flex; /* Rende i bottoni flessibili */
+  flex-wrap: wrap; /* Permette ai bottoni di andare a capo su schermi piccoli */
+  justify-content: center; /* Centra i bottoni */
+  gap: 15px; /* Spazio tra i bottoni */
+  margin-bottom: 40px; /* Spazio sotto i bottoni */
+  padding: 0 15px; /* Piccolo padding per evitare che i bottoni tocchino i bordi su mobile */
+}
+
+.btn-filter {
+  background-color: #ffffff; /* Sfondo chiaro per i bottoni inattivi */
+  color: #555; /* Testo grigio scuro */
+  border: 1px solid #ddd; /* Bordo sottile */
+  padding: 12px 25px; /* Padding per dimensione e cliccabilità */
+  border-radius: 25px; /* Bordi arrotondati (pill-shaped) */
+  font-size: 1rem;
+  font-weight: 600; /* Testo leggermente più in grassetto */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transizione fluida per hover e stato attivo */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Leggera ombra per profondità */
+  text-transform: uppercase; /* Testo in maiuscolo */
+  letter-spacing: 0.5px; /* Spaziatura tra le lettere */
+}
+
+.btn-filter:hover {
+  background-color: #e4e2fc; /* Sfondo leggermente più scuro al passaggio del mouse */
+  border-color: #ccc; /* Bordo leggermente più scuro */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombra più pronunciata all'hover */
+}
+
+.btn-filter.active {
+  background-color: #016eb1; /* Colore blu del tuo tema per il bottone attivo */
+  color: #fff; /* Testo bianco per il bottone attivo */
+  border-color: #016eb1; /* Bordo blu */
+  box-shadow: 0 4px 8px rgba(1, 110, 177, 0.3); /* Ombra blu più pronunciata */
+  transform: translateY(-2px); /* Leggero sollevamento per dare enfasi */
+}
+
+/* Media query per schermi più piccoli (opzionale, se i bottoni sono troppo grandi) */
+@media (max-width: 600px) {
+  .btn-filter {
+    padding: 10px 20px; /* Riduci il padding su schermi più piccoli */
+    font-size: 0.9rem;
+    flex-grow: 1; /* Permette ai bottoni di occupare lo spazio disponibile */
+    max-width: calc(50% - 10px); /* Due bottoni per riga con spazio */
+  }
+  .filter-buttons {
+    gap: 10px; /* Riduci il gap su mobile */
+  }
+}
+
+/* Media Queries per la Responsività */
 @media (max-width: 768px) {
   header {
     flex-direction: row; /* Mantieni logo e bottone hamburger in riga */
@@ -438,68 +581,8 @@ footer > p { /* Aggiunto footer > p per selezionare il paragrafo del copyright *
   }
 }
 
-/* Stili per i blocchi immagine-testo */
-.image-text-block {
-  display: flex; /* Utilizza Flexbox per allineare gli elementi */
-  align-items: center; /* Allinea verticalmente gli elementi al centro */
-  gap: 40px; /* Spazio tra immagine e testo */
-  margin-top: 50px; /* Spazio sopra il blocco */
-  margin-bottom: 50px; /* Spazio sotto il blocco */
-  flex-wrap: wrap; /* Permette agli elementi di andare a capo su schermi piccoli */
-}
-
-.image-text-block .text-content {
-  flex: 1; /* Il testo occuperà lo spazio disponibile */
-  min-width: 300px; /* Larghezza minima per il blocco di testo prima che vada a capo */
+/* Updated for consistent paragraph styling in 'Chi siamo' content */
+.about-us-content p {
   font-size: 1.1em;
   line-height: 1.7;
 }
-
-.image-text-block .image-content {
-  flex: 1; /* L'immagine occuperà lo spazio disponibile */
-  min-width: 300px; /* Larghezza minima per il blocco immagine prima che vada a capo */
-  border-radius: 10px; /* Bordi arrotondati per l'immagine */
-  overflow: hidden; /* Assicura che l'immagine si adatti ai bordi arrotondati */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Ombra per profondità */
-}
-
-.image-text-block .image-content img {
-  width: 100%; /* L'immagine occupa il 100% della larghezza del suo contenitore */
-  height: 350px; /* Altezza fissa per le immagini */
-  object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
-  display: block; /* Rimuove lo spazio extra sotto l'immagine */
-}
-
-/* Stile per invertire l'ordine degli elementi (immagine a sinistra, testo a destra) */
-.image-text-block.reverse-on-mobile {
-  flex-direction: row-reverse; /* Inverte l'ordine degli elementi */
-}
-
-main .container ul {
-    padding-left: 40px; /* Aumenta questo valore per maggiore indentazione */
-}
-
-/* Se vuoi che anche le liste nidificate (ul dentro ul) abbiano ulteriore indentazione */
-main .container ul ul {
-    padding-left: 40px; /* Aggiunge un'ulteriore indentazione per le sottoliste */
-}
-
-/* Potresti voler azzerare il margin-left di default se presente */
-main .container ul {
-    margin-left: 0;
-}
-
-/* Stili per le informazioni legali nel footer */
-.info-legali-footer {
-    font-size: 0.85em; /* Rende il testo leggermente più piccolo del testo circostante */
-    color: #888; /* Un grigio medio. Puoi usare altri valori come #666 o #AAAAAA */
-    display: block; /* Assicura che vada a capo se necessario, anche se è già sotto un <br> */
-    margin-top: 5px; /* Aggiunge un piccolo spazio sopra per separarlo dal copyright */
-}
-
-/* Se vuoi che anche il link della privacy policy sia leggermente più piccolo, ma mantenga il suo colore specifico,
-   puoi applicare la dimensione del font al paragrafo generale, ma in questo caso lo stile inherit sul link
-   sovrascriverebbe, quindi la soluzione precedente (separare con span) è più pulita.
-   Questo per dire che il font-size del link lo lasci come è, perché è dentro un altro p.
-   L'effetto che vuoi è solo per la riga della P.IVA.
-*/
