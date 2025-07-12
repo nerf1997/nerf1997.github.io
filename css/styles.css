@@ -189,7 +189,7 @@ header {
   text-align: center; /* Centra il testo all'interno dell'elemento */
   opacity: 1; /* Inizialmente visibile */
   transform: scale(1); /* Inizialmente a dimensione normale */
-  max-height: 500px; /* Imposta un'altezza massima sufficientemente grande per tutti i tuoi elementi reali-item */
+  max-height: 1000px; /* Imposta un'altezza massima sufficientemente grande per tutti i tuoi elementi reali-item */
   margin-bottom: 30px; /* Assicurati che ci sia un margine per la transizione */
   overflow: hidden; /* Importante per tagliare il contenuto durante la transizione di max-height */
   visibility: visible; /* Inizialmente visibile */
@@ -441,6 +441,7 @@ main .container ul {
 
 /* Media Queries per la Responsività */
 @media (max-width: 768px) {
+
   .swiper-pagination {
     bottom: 0px !important; /* Aumenta il valore per spostarlo più in alto. Regola il valore se necessario. */
   }
