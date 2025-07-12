@@ -441,6 +441,9 @@ main .container ul {
 
 /* Media Queries per la Responsività */
 @media (max-width: 768px) {
+  .swiper-pagination {
+    bottom: 0px !important; /* Aumenta il valore per spostarlo più in alto. Regola il valore se necessario. */
+  }
   .hero-content h1 {
     font-size: 2em; /* Riduci la dimensione del titolo su mobile */
   }
