@@ -441,6 +441,13 @@ main .container ul {
 
 /* Media Queries per la Responsività */
 @media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2em; /* Riduci la dimensione del titolo su mobile */
+  }
+  .hero-content p {
+    font-size: 1em; /* Riduci la dimensione del paragrafo su mobile */
+  }
+
   header {
     flex-direction: row; /* Mantieni logo e bottone hamburger in riga */
     justify-content: space-between; /* Distanziali */
