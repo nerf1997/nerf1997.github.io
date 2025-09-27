@@ -18,21 +18,57 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//matomo.gieipi.synology.me/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '2']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
+<style>
+  /* Aggiungi lo stile per la classe .chat-header */
+  .chat-header {
+    background-color: #016eb1 !important; /* Esempio: Blu vivo */
+    color: white !important; /* Opzionale: cambia il colore del testo per visibilità */
+  }
+
+  /* Opzionale: se vuoi cambiare il colore del titolo/sottotitolo all'interno */
+  .chat-header p{
+    color: white !important;
+  }
+  .chat-window-wrapper .chat-window-toggle {
+    background-color: #016eb1 !important;
+  }
+  .chat-message.chat-message-from-user:not(.chat-message-transparent) {
+    background-color: #016eb1 !important;
+    border: var(--chat--message--user--border);
+  }
+  .chat-message-from-user .chat-message-markdown p {
+    color: white !important;
+  }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+  webhookUrl: 'https://n8n.gieipi.synology.me/webhook/d0b3a15a-8d1c-437c-8523-00e108af14a4/chat',
+  webhookConfig: {
+    method: 'POST',
+    headers: {}
+  },
+  target: '#n8n-chat',
+  mode: 'window',
+  chatInputKey: 'chatInput',
+  chatSessionKey: 'sessionId',
+  metadata: {},
+  showWelcomeScreen: false,
+  defaultLanguage: 'en',
+  initialMessages: [
+  ],
+  i18n: {
+    en: {
+      title: 'Salve',
+      subtitle: "Inizia una nuova chat. Siamo qui per aiutarti 24/7.",
+      footer: '',
+      getStarted: 'New Conversation',
+      inputPlaceholder: 'Scrivi qui...',
+    },
+  },
+});
 </script>
-<!-- End Matomo Code -->
 </head>
 <body>
   <header>
