@@ -1,0 +1,162 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f7f9f8;
+}
+
+section {
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    color: #2c4f4a;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* LOGO */
+.logo {
+    max-width: 200px;
+}
+
+.logo-footer {
+    max-width: 150px;
+    margin-bottom: 0px;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #cfe7df, #e8f3ef);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+}
+
+.hero h3 {
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem;
+}
+
+/* SEZIONI */
+.about,
+.services,
+.contacts {
+    background-color: #ffffff;
+}
+
+/* SERVIZI */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: #f0f6f4;
+    padding: 35px 30px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 15px;
+}
+
+.service-icon img {
+    width: 100%;
+}
+
+/* CONTATTI */
+.contact-info {
+    margin-top: 30px;
+    font-size: 1.05rem;
+}
+
+.contact-info strong {
+    display: block;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+footer {
+    background-color: #cfe7df;
+    color: #2c4f4a;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .logo {
+        max-width: 110px;
+    }
+}
+
+/* SU DI ME CON FOTO */
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-photo img {
+    width: 180px;              /* foto non grande */
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;        /* moderna e professionale */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.about-text {
+    flex: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-photo img {
+        width: 150px;
+        height: 150px;
+    }
+}
