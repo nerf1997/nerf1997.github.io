@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F.lli Costantino Costruzioni S.r.l. | Contatti</title>
+<meta name="description" content="Contatta F.lli Costantino Costruzioni S.r.l. per preventivi, consulenze o informazioni. Trova i nostri recapiti, numero di telefono e modulo di contatto diretto.">
+<link rel="icon" type="image/x-icon" href="img/icons/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icons/android-chrome-512x512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+  /* Aggiungi lo stile per la classe .chat-header */
+  .chat-header {
+    background-color: #016eb1 !important; /* Esempio: Blu vivo */
+    color: white !important; /* Opzionale: cambia il colore del testo per visibilità */
+  }
+
+  /* Opzionale: se vuoi cambiare il colore del titolo/sottotitolo all'interno */
+  .chat-header p{
+    color: white !important;
+  }
+  .chat-window-wrapper .chat-window-toggle {
+    background-color: #016eb1 !important;
+  }
+  .chat-message.chat-message-from-user:not(.chat-message-transparent) {
+    background-color: #016eb1 !important;
+    border: var(--chat--message--user--border);
+  }
+  .chat-message-from-user .chat-message-markdown p {
+    color: white !important;
+  }
+</style>
+<!--<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+  webhookUrl: 'https://n8n.gieipi.synology.me/webhook/d0b3a15a-8d1c-437c-8523-00e108af14a4/chat',
+  webhookConfig: {
+    method: 'POST',
+    headers: {}
+  },
+  target: '#n8n-chat',
+  mode: 'window',
+  chatInputKey: 'chatInput',
+  chatSessionKey: 'sessionId',
+  metadata: {},
+  showWelcomeScreen: false,
+  defaultLanguage: 'en',
+  initialMessages: [
+  ],
+  i18n: {
+    en: {
+      title: 'Salve',
+      subtitle: "Inizia una nuova chat. Siamo qui per aiutarti 24/7.",
+      footer: '',
+      getStarted: 'New Conversation',
+      inputPlaceholder: 'Scrivi qui...',
+    },
+  },
+});
+</script>
+-->
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="img/logo.jpg" alt="Logo Costantino" class="logo">
+    </a>
+    
+    <nav class="nav-desktop">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="servizi.html">Servizi</a></li>
+        <li><a href="realizzazioni.html">Realizzazioni</a></li>
+        <li><a class="active" href="contatti.html">Contatti</a></li>
+      </ul>
+    </nav>
+
+    <div class="menu-container">
+      <button class="menu-button" id="menuButton">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav-menu" id="navMenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">Servizi</a></li>
+          <li><a href="realizzazioni.html">Realizzazioni</a></li>
+          <li><a class="active" href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h1>Contattaci</h1>
+      <p>Hai un progetto in mente o desideri maggiori informazioni sui nostri servizi? Compila il modulo sottostante e ti risponderemo il prima possibile.</p>
+      
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="9dd96a61-d1de-471d-8d0b-26ef9b92da95">
+    
+        <input type="hidden" name="botcheck" class="botcheck">
+    
+        <label for="name">Nome completo:</label>
+        <input type="text" id="name" name="name" required>
+    
+        <label for="email">Indirizzo email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Telefono:</label>
+        <input type="text" id="phone" name="phone">
+    
+        <label for="message">Messaggio:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <label>
+          <input type="checkbox" name="privacy_consent" required>
+            Dichiaro di aver letto e accettato l'<a href="privacy-policy.html" target="_blank">Informativa sulla Privacy</a>.
+          </label>
+        <button type="submit" class="button">Invia Messaggio</button>
+        <p id="formStatus"></p>
+      </form>
+    </section>
+
+    <section class="container" style="margin-top: 40px; text-align: center;">
+        <h2>Dove trovarci</h2>
+        <p>Siamo a tua disposizione per consulenze e appuntamenti.</p>
+        <p><strong>F.lli Costantino Costruzioni S.r.l.</strong></p>
+        <p>Via Daniele Antonio 6, 88100 Catanzaro</p>
+        <p><a href="tel:+393487161515" style="color: #016eb1;">Telefono: +39 348 716 1515</a></p>
+        <p><a href="mailto:info@example.com" style="color: #016eb1;">Email: info@example.com</a></p>
+        
+        <div style="margin-top: 20px;">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.2415124040716!2d16.63468537633215!3d38.86877947177519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13520f92b740523b%3A0x6fb2a0a2c0f6b701!2sVia%20Daniele%20Antonio%2C%206%2C%2088060%20Catanzaro%20CZ!5e0!3m2!1sit!2sit!4v1717344000000!5m2!1sit!2sit" 
+            width="100%" 
+            height="450" 
+            style="border:0; border-radius: 8px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Contatti</h4>
+        <p>Via Daniele Antonio 6, 88100 Catanzaro</p>
+        <p>Telefono: <a href="tel:+393487161515">+39 348 7161515</a></p>
+        <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+      </div>
+      <ul class="social-icons">
+        <li>
+          <a href="https://www.instagram.com/f.lli_costantinocostruzioni" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/393487161515?text=Salve,%20vorrei%20informazioni%20riguardo%20" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <p>© 2025 F.lli Costantino Costruzioni S.r.l. | <a href="privacy-policy.html" style="color: inherit;">Privacy Policy</a><br>
+      <span class="info-legali-footer">P.IVA: XXXXXXXXX | Cap. Soc.: YYYYYYYYYY</span></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

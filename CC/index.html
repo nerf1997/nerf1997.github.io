@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F.lli Costantino Costruzioni S.r.l. | Home</title>
+<meta name="description" content="F.lli Costantino Costruzioni S.r.l.: impresa edile a Catanzaro specializzata in nuove costruzioni, ristrutturazioni e restauri. Professionalità, qualità e sicurezza per ogni progetto.">
+<link rel="icon" type="image/x-icon" href="img/icons/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icons/android-chrome-512x512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512‑…" crossorigin="anonymous" referrerpolicy="no‑referrer" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="css/swiper-custom.css" />
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.gieipi.synology.me/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="img/logo.jpg" alt="Logo Costantino" class="logo">
+    </a>
+
+    <nav class="nav-desktop">
+      <ul>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="servizi.html">Servizi</a></li>
+        <li><a href="realizzazioni.html">Realizzazioni</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+      </ul>
+    </nav>
+
+    <div class="menu-container">
+      <button class="menu-button" id="menuButton">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="nav-menu" id="navMenu">
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="servizi.html">Servizi</a></li>
+          <li><a href="realizzazioni.html">Realizzazioni</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="img/slider_1.jpg" alt="Slide 1">
+    <img src="img/slider_2.jpg" alt="Slide 2">
+    <img src="img/slider_3.jpg" alt="Slide 3">
+    <div class="hero-content container">
+      <h1>Innovazione e Tradizione al Servizio dell’Edilizia</h1>
+      <!--<p>Professionalità, qualità e sicurezza in ogni progetto</p>-->
+      <a href="contatti.html" class="btn">Contattaci</a>
+    </div>
+  </section>
+
+  <main class="container">
+<!--    <section class="servizi-preview">
+      <h2>I nostri servizi</h2>
+      <div class="reali-grid">
+        <div class="reali-item">
+          <img src="img/servizi/edilizia.jpg" alt="Edilizia">
+          <h3>Edilizia Generale</h3>
+          <p>Costruzione e ristrutturazione edifici.</p>
+        </div>
+        <div class="reali-item">
+          <img src="img/servizi/consolidamento.jpg" alt="Consolidamento">
+          <h3>Consolidamento Strutturale</h3>
+          <p>Interventi con garanzia e certificati.</p>
+        </div>
+        <div class="reali-item">
+          <img src="img/servizi/restauro.jpg" alt="Restauro">
+          <h3>Restauro Edilizio</h3>
+          <p>Recupero beni storici con materiali pregiati.</p>
+        </div>
+      </div>
+      <div class="center">
+        <a href="servizi.html" class="btn-outline">Scopri di più</a>
+      </div>
+    </section>-->
+    <section class="servizi-preview">
+      <h2>I nostri servizi</h2>
+      <div class="swiper-container" id="serviziSwiper">
+        <div class="swiper-wrapper">
+          </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="center">
+        <a href="servizi.html" class="btn-outline">Scopri di più</a>
+      </div>
+    </section>
+
+    <section class="reali-preview">
+      <h2>Le nostre realizzazioni</h2>
+      <div class="swiper-container" id="realizzazioniSwiper">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="center">
+        <a href="realizzazioni.html" class="btn-outline">Vedi tutte</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Contatti</h4>
+        <p>Via Daniele Antonio 6, 88100 Catanzaro</p>
+        <p>Telefono: <a href="tel:+393487161515">+39 348 7161515</a></p>
+        <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+      </div>
+      <ul class="social-icons">
+        <li>
+          <a href="https://www.instagram.com/f.lli_costantinocostruzioni" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/393487161515?text=Salve,%20vorrei%20informazioni%20riguardo%20" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <p>© 2025 F.lli Costantino Costruzioni S.r.l. | <a href="privacy-policy.html" style="color: inherit;">Privacy Policy</a><br>
+      <span class="info-legali-footer">P.IVA: XXXXXXXXX | Cap. Soc.: YYYYYYYYYY</span></p>
+  </footer>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="js/swiper-init.js"></script>
+  <script src="js/swiper-servizi-init.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
