@@ -2,12 +2,12 @@
 function initRealizzazioniSwiper() {
   const swiperWrapper = document.querySelector('#realizzazioniSwiper .swiper-wrapper');
   const imageFiles = [
-    'realizzazione1.jpg',
-    'realizzazione2.jpg',
-    'realizzazione3.jpg',
-    'realizzazione4.jpg',
-    'realizzazione5.jpg',
-    'realizzazione6.jpg'
+    'Villette_Montepaone_CZ/realizzazione_5.jpg',
+    'Appartamento_Via_De_Riso/realizzazione_21.jpg',
+    'Piazza_San_Floro_CZ/realizzazione_19.jpg',
+    'Cantiere_Comune_CZ/realizzazione_6.jpg',
+    'Casa_Via_Iannelli/realizzazione_33.jpg',
+    'San_Floro_2/realizzazione_13.jpg'
   ];
 
   if (!swiperWrapper) {
