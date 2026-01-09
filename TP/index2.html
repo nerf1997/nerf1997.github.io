@@ -73,7 +73,7 @@
     <div class="container about-flex">
         
         <div class="about-photo">
-            <img src="img/TP.png" alt="D.ssa Teressa Pologruto Psicologa">
+            <img src="img/TP.jpg" alt="D.ssa Teressa Pologruto Psicologa">
         </div>
         <div class="about-text">
             <h2>Su di me</h2>
@@ -103,11 +103,35 @@
         <div class="container">
             <h2>Contatti</h2>
             <p>Puoi contattarmi per fissare un primo colloquio conoscitivo.</p>
-
+            <div class="contacts-flex">
             <div class="contact-info">
-                <strong>Email:</strong> nome@esempio.it
-                <strong>Telefono:</strong> +39 000 000 0000
-                <strong>Sede:</strong> Città – consulenze anche online
+                <strong class="phone-label">Email:</strong><a href="mailto:teresapologruto@gmail.com" class="phone-link">teresapologruto@gmail.com</a>
+                <div class="phone-row">
+                    <strong class="phone-label">Telefono:</strong>
+                
+                    <div class="phone-actions">
+                        <a href="tel:+390000000000" class="phone-link">
+                            +39 000 000 0000
+                        </a>
+                
+                        <a 
+                            href="https://wa.me/390000000000"
+                            target="_blank"
+                            class="whatsapp-link"
+                            aria-label="Chat WhatsApp">
+                            <img src="img/icons/whatsapp.svg" alt="WhatsApp">
+                        </a>
+                    </div>
+                </div>
+
+
+                <strong class="phone-label">Sede:</strong> <a class="phone-link">Via Enrico Berlinguer, 12, 88060 Marina di Davoli CZ</a>
+            </div>
+
+            <!-- MAPPA GOOGLE -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.2340218295885!2d16.538855975879862!3d38.66648946029595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x136aad295310e8b9%3A0x96953fe9463715d2!2sVia%20Enrico%20Berlinguer%2C%2012%2C%2088060%20Marina%20di%20Davoli%20CZ!5e0!3m2!1sit!2sit!4v1767988076928!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
             </div>
         </div>
     </section>
@@ -116,6 +140,7 @@
     <footer>
         <img src="img/logo.png" alt="Logo Psicologo" class="logo-footer">
         <p>© 2026 Dott.ssa Teresa Pologruto – Psicologa Clinica ad orientamento sistemico - relazionale</p>
+        <p>P. Iva 04040640791</p>
     </footer>
 
 </body>

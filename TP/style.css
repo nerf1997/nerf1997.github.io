@@ -127,6 +127,23 @@ footer {
     .logo {
         max-width: 110px;
     }
+    .contacts-flex {
+        flex-direction: column;
+    }
+
+    .map-container iframe {
+        height: 250px;
+    }
+
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-photo img {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 /* SU DI ME CON FOTO */
@@ -148,15 +165,55 @@ footer {
     flex: 1;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .about-flex {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-photo img {
-        width: 150px;
-        height: 150px;
-    }
+/* CONTATTI CON MAPPA */
+.contacts-flex {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    align-items: flex-start;
 }
+
+.contact-info {
+    flex: 1;
+}
+
+.map-container {
+    flex: 1;
+    border-radius: 15px;
+    /*overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);*/
+}
+
+
+
+.phone-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.phone-label {
+    min-width: 80px; /* allinea con Email / Sede */
+}
+
+.phone-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phone-link {
+    color: #2c4f4a;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.whatsapp-link img {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+
+
