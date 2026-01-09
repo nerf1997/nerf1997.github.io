@@ -117,6 +117,10 @@ footer {
     padding: 30px 20px;
     font-size: 0.9rem;
 }
+footer p {
+    color: #2c4f4a;   /* colore normale del testo */
+    text-decoration: none;  /* niente sottolineatura */
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
