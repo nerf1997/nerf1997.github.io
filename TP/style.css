@@ -144,6 +144,11 @@ footer {
         width: 150px;
         height: 150px;
     }
+
+    .whatsapp-link img {
+        width: 16px !important;
+        height: 16px !important;
+    }
 }
 
 /* SU DI ME CON FOTO */
@@ -165,55 +170,102 @@ footer {
     flex: 1;
 }
 
-/* CONTATTI CON MAPPA */
+/* =========================
+   SEZIONE CONTATTI
+========================= */
+
+/* Contenitore principale */
 .contacts-flex {
     display: flex;
     gap: 40px;
-    margin-top: 30px;
     align-items: flex-start;
+    flex-wrap: wrap; /* consente ai contenuti di andare a capo su mobile */
+    width: 100%;
 }
 
+/* Contatti */
 .contact-info {
-    flex: 1;
+    flex: 1 1 300px; /* larghezza minima 300px */
 }
 
-.map-container {
-    flex: 1;
-    border-radius: 15px;
-    /*overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);*/
-}
-
-
-
+/* Righe di contatto (telefono, sede) */
 .phone-row {
     display: flex;
-    align-items: baseline;
-    gap: 10px;
+    align-items: baseline; /* allinea etichetta e testo */
+    flex-direction: column; /* Verticale: etichetta sopra, contenuto sotto */
+    gap: 5px;               /* Spazio tra etichetta e numero/WhatsApp */
     margin-top: 10px;
 }
 
 .phone-label {
-    min-width: 80px; /* allinea con Email / Sede */
+    min-width: 80px; /* allinea tutte le etichette */
 }
 
 .phone-actions {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 8px;
 }
 
-.phone-link {
+/* Link contatti */
+.phone-link,
+.address-link {
     color: #2c4f4a;
     text-decoration: none;
     font-weight: 500;
 }
 
-.whatsapp-link img {
-    width: 18px;
-    height: 18px;
-    display: block;
+.phone-link:hover {
+    text-decoration: underline;
 }
 
+/* WhatsApp */
+.whatsapp-link img {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    display: block;
+    position: relative;
+    top: 1px;
+}
 
+/* Mappa */
+.map-container {
+    flex: 1 1 300px; /* larghezza minima 300px */
+    max-width: 100%; /* impedisce che esca fuori */
+    border-radius: 15px;
+    overflow: hidden;
+}
 
+.map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .contacts-flex {
+        flex-direction: column; /* contatti sopra, mappa sotto */
+    }
+
+    .map-container iframe {
+        height: 250px; /* più compatta su mobile */
+    }
+
+    /* Riduce WhatsApp su mobile */
+    .whatsapp-link img {
+        width: 16px !important;
+        height: 16px !important;
+        min-width: 16px;
+        min-height: 16px;
+        max-width: 16px;
+        max-height: 16px;
+    }
+}
