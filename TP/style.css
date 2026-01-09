@@ -162,11 +162,19 @@ footer p {
     gap: 40px;
 }
 
-.about-photo img {
-    width: 180px;              /* foto non grande */
+/*.about-photo img {
+    width: 180px;
     height: 180px;
     object-fit: cover;
-    border-radius: 50%;        /* moderna e professionale */
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}*/
+
+.about-photo img {
+    width: 350px;               /* puoi mantenere o cambiare */
+    height: auto;               /* mantiene proporzioni reali */
+    object-fit: contain;        /* mostra l’immagine completa senza taglio */
+    border-radius: 5%;           /* rimuove il cerchio */
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
