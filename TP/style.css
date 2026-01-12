@@ -42,7 +42,7 @@ p {
 
 /* HERO */
 .hero {
-    background: linear-gradient(135deg, #cfe7df, #e8f3ef);
+    background: linear-gradient(135deg, #cfe7df, #f0f6f4);
     text-align: center;
 }
 
@@ -111,7 +111,7 @@ p {
 
 /* FOOTER */
 footer {
-    background-color: #cfe7df;
+    background-color: linear-gradient(135deg, #cfe7df, #f0f6f4);
     color: #2c4f4a;
     text-align: center;
     padding: 30px 20px;
@@ -252,7 +252,24 @@ footer p {
     display: block;
     position: relative;
     top: 1px;
+    color: #2c4f4a;
+    text-decoration: none;
+    font-weight: 500;
 }
+
+.whatsapp-link {
+    text-decoration: none;
+    color: #25D366; /* verde WhatsApp */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* spazio tra testo e icona */
+}
+
+.whatsapp-link:hover {
+    opacity: 0.8;
+}
+
 
 /* Mappa */
 .map-container {
@@ -266,4 +283,47 @@ footer p {
     width: 100%;
     height: 300px;
     border: 0;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* disabilita il ridimensionamento */
+}
+
+#contact-form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background-color: #0056b3;
+}
+
+#contact-form button {
+    padding: 10px 15px;
+    background-color: #d9ece6; /* colore di sfondo del pulsante */
+    color: #2c4f4a; /* colore del testo */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+    background-color: #9de5ce; /* colore di sfondo al passaggio del mouse */
 }
